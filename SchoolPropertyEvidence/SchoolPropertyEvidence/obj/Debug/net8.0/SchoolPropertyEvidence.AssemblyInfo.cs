@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolPropertyEvidence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+279d065f43774725c8a5f849936f1efb23bb5a2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc13f10b1ae9f962b2f61ea76a392c4589828d30")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolPropertyEvidence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolPropertyEvidence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
