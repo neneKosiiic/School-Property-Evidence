@@ -1,0 +1,40 @@
+@page "/"
+@inject IHttpClientFactory HttpFactory
+@inject NavigationManager Nav
+
+<h3>Login</h3>
+
+<input @bind="username" placeholder="Username" />
+<input @bind="password" type="password" placeholder="Password" />
+
+<button @onclick="HandleLogin">Login</button>
+
+<p>@message</p>
+
+@code {
+    private string username;
+    private string password;
+    private string message;
+
+    private async Task HandleLogin()
+    {
+        var Http = HttpFactory.CreateClient("ServerAPI");
+
+        var content = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("username", username),
+            new KeyValuePair<string, string>("password", password)
+        });
+
+        var response = await Http.PostAsync("/api/login", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Nav.NavigateTo("/", true); // reload to update auth state
+        }
+        else
+        {
+            message = "Invalid login";
+        }
+    }
+}
