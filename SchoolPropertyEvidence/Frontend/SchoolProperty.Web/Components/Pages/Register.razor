@@ -1,0 +1,48 @@
+@page "/register"
+@inject IHttpClientFactory HttpFactory
+@inject NavigationManager Nav
+
+<h3>Register</h3>
+
+<div>
+    <input @bind="firstName" placeholder="First Name" />
+    <input @bind="lastName" placeholder="Last Name" />
+    <input @bind="email" placeholder="Email" />
+    <input @bind="password" type="password" placeholder="Password" />
+    <button @onclick="HandleRegister">Register</button>
+</div>
+
+<p>@message</p>
+
+<p><a href="/login">Login</a></p>
+
+@code {
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string password;
+    private string message;
+
+    private async Task HandleRegister()
+    {
+        var http = HttpFactory.CreateClient("ServerAPI");
+
+        var registerRequest = new { FirstName = firstName, LastName = lastName, Email = email, Password = password };
+        var json = System.Text.Json.JsonSerializer.Serialize(registerRequest);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+        var response = await http.PostAsync("api/auth/register", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            message = "Registration successful. Please login.";
+            // Optionally navigate to login
+            // Nav.NavigateTo("/login");
+        }
+        else
+        {
+            var error = await response.Content.ReadAsStringAsync();
+            message = $"Registration failed: {error}";
+        }
+    }
+}

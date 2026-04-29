@@ -4,12 +4,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient("ServerAPI", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5062"); // adjust to your app URL
+    client.BaseAddress = new Uri("https://localhost:7223"); // backend API URL, same as backend applicationUrl
 });
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<SchoolProperty.Web.Services.AuthService>();
 
 var app = builder.Build();
 
