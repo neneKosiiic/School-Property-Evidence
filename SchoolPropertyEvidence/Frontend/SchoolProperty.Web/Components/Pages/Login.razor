@@ -1,52 +1,36 @@
 @page "/login"
-@inject IHttpClientFactory HttpFactory
+@layout EmptyLayout
 @inject NavigationManager Nav
-@inject IJSRuntime JSRuntime
-@inject SchoolProperty.Web.Services.AuthService AuthService
-@using Microsoft.JSInterop
 
 <h3>Login</h3>
 
 <div>
-    <input @bind="email" placeholder="Email" />
-    <input @bind="password" type="password" placeholder="Password" />
+    <input @bind="email" @bind:event="oninput" placeholder="Email" />
+    <input @bind="password" @bind:event="oninput" type="password" placeholder="Password" />
     <button @onclick="HandleLogin">Login</button>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <p style="color:red">@message</p>
+    }
 </div>
-
-<p>@message</p>
 
 <p><a href="/register">Register</a></p>
 
 @code {
-    private string email;
-    private string password;
-    private string message;
+    private string email = "";
+    private string password = "";
+    private string message = "";
 
-    private async Task HandleLogin()
+    private void HandleLogin()
     {
-        var http = HttpFactory.CreateClient("ServerAPI");
-
-        var loginRequest = new { Email = email, Password = password };
-        var json = System.Text.Json.JsonSerializer.Serialize(loginRequest);
-        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
-        var response = await http.PostAsync("api/auth/login", content);
-
-        if (response.IsSuccessStatusCode)
+        if (email == "student@test.com" && password == "1234")
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var result = System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(responseContent);
-            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", result.Token);
-            Nav.NavigateTo("/");
+            message = "";
+            Nav.NavigateTo("/home");
         }
         else
         {
-            message = "Invalid login";
+            message = "Invalid email or password.";
         }
-    }
-
-    public class LoginResponse
-    {
-        public string Token { get; set; }
     }
 }
