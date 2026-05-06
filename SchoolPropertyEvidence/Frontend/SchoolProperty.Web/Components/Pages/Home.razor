@@ -1,7 +1,67 @@
 ﻿@page "/home"
+@inject NavigationManager Nav
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>School Property Database</h1>
+<p class="mb-4">This is a mock dashboard showing the main database components. Use the buttons below to add, delete, or edit records.</p>
 
-Welcome to your new app.
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Room</th>
+            <th>Owner</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Room</td>
+                <td>@item.Owner</td>
+                <td>@item.Quantity</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="btn-group mt-3">
+    <button class="btn btn-primary" @onclick="NavigateAdd">Add</button>
+    <button class="btn btn-danger" @onclick="NavigateDelete">Delete</button>
+    <button class="btn btn-warning text-dark" @onclick="NavigateEdit">Edit</button>
+</div>
+
+@code {
+    private List<PropertyItem> Items = new()
+    {
+        new PropertyItem { Id = 1, Name = "Laptop", Category = "Electronics", Room = "Room A", Owner = "John Doe", Quantity = 5, Status = "Available" },
+        new PropertyItem { Id = 2, Name = "Projector", Category = "Electronics", Room = "Room B", Owner = "Jane Smith", Quantity = 2, Status = "In use" },
+        new PropertyItem { Id = 3, Name = "Desk", Category = "Furniture", Room = "Room C", Owner = "School", Quantity = 12, Status = "Available" },
+        new PropertyItem { Id = 4, Name = "Whiteboard", Category = "Supplies", Room = "Room A", Owner = "School", Quantity = 3, Status = "Available" },
+        new PropertyItem { Id = 5, Name = "Chair", Category = "Furniture", Room = "Room C", Owner = "School", Quantity = 30, Status = "Available" },
+    };
+
+    private void NavigateAdd() => Nav.NavigateTo("/add");
+    private void NavigateDelete() => Nav.NavigateTo("/delete");
+    private void NavigateEdit() => Nav.NavigateTo("/edit");
+
+    private class PropertyItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Room { get; set; }
+        public string Owner { get; set; }
+        public int Quantity { get; set; }
+        public string Status { get; set; }
+    }
+}

@@ -32,5 +32,7 @@ namespace SchoolPropertyEvidence.Models {
         [Required]
         [Column("is_active")]
         public bool IsActive { get; set; }
+
+        public ICollection<RoomModel> Rooms { get; set; } = new List<RoomModel>();
     }
 }
