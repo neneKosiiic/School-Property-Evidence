@@ -50,14 +50,27 @@ namespace SchoolPropertyEvidence.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            {
-                return Unauthorized("Invalid credentials");
-            }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == request.Email.ToLower());
+
+            if (user == null)
+                return Unauthorized();
+
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+                return Unauthorized();
+
+            if (!user.IsActive)
+                return Unauthorized("Account is disabled");
 
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
+
+            return Ok(new
+            {
+                token,
+                email = user.Email,
+                role = user.Role,
+                firstName = user.FirstName,
+                lastName = user.LastName
+            });
         }
 
         private string GenerateJwtToken(PeopleModel user)
