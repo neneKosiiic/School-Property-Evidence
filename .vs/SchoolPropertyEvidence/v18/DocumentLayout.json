@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\frontend\\schoolproperty.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|solutionrelative:frontend\\schoolproperty.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\frontend\\schoolproperty.web\\components\\pages\\add.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|solutionrelative:frontend\\schoolproperty.web\\components\\pages\\add.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\frontend\\schoolproperty.web\\components\\pages\\delete.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|solutionrelative:frontend\\schoolproperty.web\\components\\pages\\delete.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\frontend\\schoolproperty.web\\components\\pages\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{689D1CC4-C54C-5EE7-79AF-8DA8A18DFBFA}|Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj|solutionrelative:frontend\\schoolproperty.web\\components\\pages\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BFA597E-1098-49BA-8E8D-1402D30537EB}|SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\schoolpropertyevidence\\models\\itemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BFA597E-1098-49BA-8E8D-1402D30537EB}|SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj|solutionrelative:schoolpropertyevidence\\models\\itemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BFA597E-1098-49BA-8E8D-1402D30537EB}|SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj|d:\\projects\\school-property-evidence\\school-property-evidence\\schoolpropertyevidence\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5BFA597E-1098-49BA-8E8D-1402D30537EB}|SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj|solutionrelative:schoolpropertyevidence\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Delete.razor",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Delete.razor",
+              "RelativeDocumentMoniker": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Delete.razor",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Delete.razor",
+              "RelativeToolTip": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Delete.razor",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAACcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-26T20:10:15.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Edit.razor",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Edit.razor",
+              "RelativeDocumentMoniker": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Edit.razor",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Edit.razor",
+              "RelativeToolTip": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Edit.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-26T20:09:55.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Add.razor",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Add.razor",
+              "RelativeDocumentMoniker": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Add.razor",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Add.razor",
+              "RelativeToolTip": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Add.razor",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAADYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-26T20:09:36.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Home.razor",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Frontend\\SchoolProperty.Web\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAADkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-26T20:07:11.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemModel.cs",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\Models\\ItemModel.cs",
+              "RelativeDocumentMoniker": "SchoolPropertyEvidence\\Models\\ItemModel.cs",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\Models\\ItemModel.cs",
+              "RelativeToolTip": "SchoolPropertyEvidence\\Models\\ItemModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wCcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T20:04:34.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\appsettings.json",
+              "RelativeDocumentMoniker": "SchoolPropertyEvidence\\appsettings.json",
+              "ToolTip": "D:\\projects\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\appsettings.json",
+              "RelativeToolTip": "SchoolPropertyEvidence\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-26T19:37:33.135Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

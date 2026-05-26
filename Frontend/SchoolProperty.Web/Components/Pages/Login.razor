@@ -1,0 +1,50 @@
+@page "/login"
+@layout EmptyLayout
+@inject IHttpClientFactory HttpFactory
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<h3>Login</h3>
+
+<div>
+    <input @bind="email" @bind:event="oninput" placeholder="Email" />
+    <input @bind="password" @bind:event="oninput" type="password" placeholder="Password" />
+    <button @onclick="HandleLogin">Login</button>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <p style="color:red">@message</p>
+    }
+</div>
+
+<p><a href="/register">Register</a></p>
+
+@code {
+    private string email = "";
+    private string password = "";
+    private string message = "";
+
+    private async Task HandleLogin()
+    {
+        var http = HttpFactory.CreateClient("ServerAPI");
+
+        var loginRequest = new { Email = email, Password = password };
+        var json = System.Text.Json.JsonSerializer.Serialize(loginRequest);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+        var response = await http.PostAsync("api/auth/login", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var body = await response.Content.ReadAsStringAsync();
+            using var doc = System.Text.Json.JsonDocument.Parse(body);
+            var token = doc.RootElement.GetProperty("token").GetString();
+            await JS.InvokeVoidAsync("localStorage.setItem", "authToken", token);
+            message = "";
+            Nav.NavigateTo("/home");
+        }
+        else
+        {
+            message = "Invalid email or password.";
+        }
+    }
+}

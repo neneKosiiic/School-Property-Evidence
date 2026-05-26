@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "1",
+    "Projects": [
+      {
+        "Path": "SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
