@@ -1,40 +1,155 @@
 @page "/delete"
+@using System.Net.Http.Json
 @inject NavigationManager Nav
+@inject IHttpClientFactory HttpFactory
 
 <PageTitle>Delete Record</PageTitle>
 
 <h1>Delete Record</h1>
-<p>Select a mock item and delete it from the list.</p>
+<p>Vyberte položku nebo místnost a potvrïte smazání.</p>
 
 <div class="mb-3">
-    <label class="form-label">Select item</label>
-    <select class="form-select" @bind="SelectedItemId">
-        <option value="1">1 - Laptop</option>
-        <option value="2">2 - Projector</option>
-        <option value="3">3 - Desk</option>
-        <option value="4">4 - Whiteboard</option>
+    <label class="form-label">Select record to delete</label>
+    <select class="form-select" @bind="SelectedKey">
+        <option value="">-- vyberte --</option>
+        @foreach (var e in Combined)
+        {
+            <option value="@e.Key">@e.Display</option>
+        }
     </select>
 </div>
 
-<button class="btn btn-danger me-2" @onclick="DeleteItem">Delete</button>
+<button class="btn btn-danger me-2" @onclick="DeleteSelected" disabled="@(!CanDelete)">Delete</button>
 <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
 
 @if (!string.IsNullOrEmpty(Message))
 {
-    <div class="alert alert-warning mt-3">@Message</div>
+    <div class="alert @AlertClass mt-3">@Message</div>
 }
 
 @code {
-    private int SelectedItemId = 1;
-    private string Message;
+    private string SelectedKey { get; set; } = string.Empty;
+    private string Message = string.Empty;
+    private string AlertClass = "alert-info";
 
-    private void DeleteItem()
+    private List<CombinedEntry> Combined = new();
+
+    private bool CanDelete => !string.IsNullOrEmpty(SelectedKey);
+
+    protected override async Task OnInitializedAsync()
     {
-        Message = $"Mock item {SelectedItemId} deleted successfully. (No backend yet.)";
+        await LoadAllAsync();
     }
 
-    private void Cancel()
+    private async Task LoadAllAsync()
     {
-        Nav.NavigateTo("/home");
+        Message = string.Empty;
+        Combined.Clear();
+
+        var http = HttpFactory.CreateClient("ServerAPI");
+
+        try
+        {
+            // naèíst položky
+            var items = await http.GetFromJsonAsync<List<ItemDto>>("api/items") ?? new();
+            foreach (var it in items)
+            {
+                // key obsahuje typ pro rozlišení pøi mazání, display je jednoduchý: "1 Chair1" nebo "1 Room1"
+                Combined.Add(new CombinedEntry { Key = $"item:{it.Id}", Display = $"{it.Id} {it.ItemName}" });
+            }
+
+            // naèíst místnosti
+            var rooms = await http.GetFromJsonAsync<List<RoomDto>>("api/rooms") ?? new();
+            foreach (var r in rooms)
+            {
+                Combined.Add(new CombinedEntry { Key = $"room:{r.Id}", Display = $"{r.Id} {r.RoomName}" });
+            }
+
+            // volitelnì seøadit podle textu
+            Combined = Combined.OrderBy(c => c.Display).ToList();
+        }
+        catch (Exception ex)
+        {
+            Combined = new();
+            Message = $"Nepodaøilo se naèíst data: {ex.Message}";
+            AlertClass = "alert-danger";
+            Console.Error.WriteLine(ex);
+        }
+    }
+
+    private async Task DeleteSelected()
+    {
+        if (!CanDelete)
+        {
+            Message = "Vyberte položku k smazání.";
+            AlertClass = "alert-warning";
+            return;
+        }
+
+        var parts = SelectedKey.Split(':', 2);
+        if (parts.Length != 2)
+        {
+            Message = "Neplatná volba.";
+            AlertClass = "alert-danger";
+            return;
+        }
+
+        var type = parts[0]; // "item" nebo "room"
+        if (!int.TryParse(parts[1], out var id))
+        {
+            Message = "Neplatné ID.";
+            AlertClass = "alert-danger";
+            return;
+        }
+
+        var http = HttpFactory.CreateClient("ServerAPI");
+        string url = type == "item" ? $"api/items/{id}" : $"api/rooms/{id}";
+
+        try
+        {
+            var response = await http.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                Message = $"Smazáno: {SelectedKey}";
+                AlertClass = "alert-success";
+
+                // obnovit seznam
+                SelectedKey = string.Empty;
+                await LoadAllAsync();
+            }
+            else
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Message = $"Chyba pøi mazání: {response.StatusCode} - {content}";
+                AlertClass = "alert-danger";
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Výjimka pøi mazání: {ex.Message}";
+            AlertClass = "alert-danger";
+        }
+    }
+
+    private void Cancel() => Nav.NavigateTo("/home");
+
+    // pomocné tøídy/DTO; upravte pokud backend vrací jiná pole
+    private class CombinedEntry
+    {
+        public string Key { get; set; } = string.Empty;
+        public string Display { get; set; } = string.Empty;
+    }
+
+    private class ItemDto
+    {
+        public int Id { get; set; }
+        public string InventoryNumber { get; set; } = string.Empty;
+        public string ItemName { get; set; } = string.Empty;
+    }
+
+    private class RoomDto
+    {
+        public int Id { get; set; }
+        public string RoomName { get; set; } = string.Empty;
     }
 }
