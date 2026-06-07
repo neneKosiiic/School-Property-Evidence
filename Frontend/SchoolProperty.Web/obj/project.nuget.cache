@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "yD0POp0kt/8=",
+  "dgSpecHash": "1TaL6lD0bpY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nene\\OneDrive\\Plocha\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj",
+  "projectFilePath": "D:\\school\\programko\\tretak\\School-Property-Evidence\\School-Property-Evidence\\Frontend\\SchoolProperty.Web\\SchoolProperty.Web.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.11\\microsoft.netcore.app.host.win-x64.9.0.11.nupkg.sha512"
   ],

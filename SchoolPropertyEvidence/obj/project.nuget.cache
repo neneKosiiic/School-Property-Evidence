@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a0iCS4bmQ2Y=",
+  "dgSpecHash": "vL+iIdoyd0I=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nene\\OneDrive\\Plocha\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
+  "projectFilePath": "D:\\school\\programko\\tretak\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nene\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -56,8 +56,8 @@
     "C:\\Users\\Nene\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
-    "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\Nene\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.22\\microsoft.netcore.app.host.win-x64.8.0.22.nupkg.sha512"
   ],

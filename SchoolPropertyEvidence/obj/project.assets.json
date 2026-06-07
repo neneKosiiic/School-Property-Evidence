@@ -2646,11 +2646,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nene\\OneDrive\\Plocha\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
+      "projectUniqueName": "D:\\school\\programko\\tretak\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
       "projectName": "SchoolPropertyEvidence",
-      "projectPath": "C:\\Users\\Nene\\OneDrive\\Plocha\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
+      "projectPath": "D:\\school\\programko\\tretak\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\SchoolPropertyEvidence.csproj",
       "packagesPath": "C:\\Users\\Nene\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nene\\OneDrive\\Plocha\\School-Property-Evidence\\SchoolPropertyEvidence\\obj\\",
+      "outputPath": "D:\\school\\programko\\tretak\\School-Property-Evidence\\School-Property-Evidence\\SchoolPropertyEvidence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
