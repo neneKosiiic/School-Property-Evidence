@@ -3,48 +3,148 @@
 @using SchoolPropertyEvidence.Models
 @inject NavigationManager Nav
 @inject IHttpClientFactory HttpFactory
-
 <PageTitle>Home</PageTitle>
 
-<h1>School Property Database</h1>
+<div class="home-page">
+    <h1 class="home-title">School Property Database</h1>
 
-<table class="table table-striped table-bordered">
-    <thead class="table-dark">
-        <tr>
-            <th>Id</th>
-            <th>Název</th>
-            <th>Třídní</th>
-            <th>Počítače</th>
-            <th>Nábitek</th>
-            <th>Elektronika</th>
-            <th>Učební pomůcky</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Items)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.RoomName</td>
-                <td>@(string.IsNullOrEmpty(item.ResponsibleFirstName) ? string.Empty : $"{item.ResponsibleFirstName} {item.ResponsibleLastName}")</td>
-                <td>@item.Computers</td>
-                <td>@item.Furniture</td>
-                <td>@item.Electronics</td>
-                <td>@item.LearningEquipment</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="table-wrapper">
+        <table class="property-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Název</th>
+                    <th>Třídní</th>
+                    <th>Počítače</th>
+                    <th>Nábitek</th>
+                    <th>Elektronika</th>
+                    <th>Učební pomůcky</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Items)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.RoomName</td>
+                        <td>@(string.IsNullOrEmpty(item.ResponsibleFirstName) ? string.Empty : $"{item.ResponsibleFirstName} {item.ResponsibleLastName}")</td>
+                        <td>@item.Computers</td>
+                        <td>@item.Furniture</td>
+                        <td>@item.Electronics</td>
+                        <td>@item.LearningEquipment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<div class="btn-group mt-3">
-    <button class="btn btn-primary" @onclick="NavigateAdd">Add</button>
-    <button class="btn btn-danger" @onclick="NavigateDelete">Delete</button>
-    <button class="btn btn-warning text-dark" @onclick="NavigateEdit">Edit</button>
+    <div class="home-actions">
+        <button class="action-btn btn-add" @onclick="NavigateAdd">Add</button>
+        <button class="action-btn btn-delete" @onclick="NavigateDelete">Delete</button>
+        <button class="action-btn btn-edit" @onclick="NavigateEdit">Edit</button>
+    </div>
 </div>
+
+<style>
+    .home-page {
+        padding: 32px;
+        min-height: 100%;
+        box-sizing: border-box;
+    }
+
+    .home-title {
+        margin: 0 0 24px 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #222;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        background: #fff;
+    }
+
+    .property-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.925rem;
+        color: #333;
+    }
+
+    .property-table thead tr {
+        background-color: #7c3aed;
+        color: #fff;
+    }
+
+    .property-table th {
+        padding: 11px 14px;
+        text-align: left;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .property-table td {
+        padding: 10px 14px;
+        border-top: 1px solid #e0e0e0;
+        color: #444;
+    }
+
+    .property-table tbody tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .property-table tbody tr:hover {
+        background-color: #f3eeff;
+    }
+
+    .home-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        padding: 10px 24px;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .btn-add {
+        background-color: #7c3aed;
+        color: #fff;
+    }
+
+    .btn-add:hover {
+        background-color: #6d28d9;
+    }
+
+    .btn-delete {
+        background-color: #dc2626;
+        color: #fff;
+    }
+
+    .btn-delete:hover {
+        background-color: #b91c1c;
+    }
+
+    .btn-edit {
+        background-color: #f59e0b;
+        color: #1a1a1a;
+    }
+
+    .btn-edit:hover {
+        background-color: #d97706;
+    }
+</style>
 
 @code {
     private List<RoomWithCountsDto> Items = new();
-
     private async Task InitializeItemsAsync()
     {
         try
@@ -56,15 +156,12 @@
         catch
         {
             Items = new();
-            // případně přidat logování nebo zobrazení chyby
         }
     }
-
     protected override async Task OnInitializedAsync()
     {
         await InitializeItemsAsync();
     }
-
     private void NavigateAdd() => Nav.NavigateTo("/add");
     private void NavigateDelete() => Nav.NavigateTo("/delete");
     private void NavigateEdit() => Nav.NavigateTo("/edit");
