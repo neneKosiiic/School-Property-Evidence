@@ -19,8 +19,10 @@ namespace SchoolPropertyEvidence.Models {
         public int ResponsiblePersonId { get; set; }
 
         [ForeignKey(nameof(ResponsiblePersonId))]
+        [InverseProperty(nameof(PeopleModel.Rooms))]
         public PeopleModel ResponsiblePerson { get; set; } = null!;
 
+        [InverseProperty(nameof(ItemModel.Room))]
         public ICollection<ItemModel> Items { get; set; } = new List<ItemModel>();
     }
 }

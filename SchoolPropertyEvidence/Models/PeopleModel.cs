@@ -33,6 +33,7 @@ namespace SchoolPropertyEvidence.Models {
         [Column("is_active")]
         public bool IsActive { get; set; }
 
+        [InverseProperty(nameof(RoomModel.ResponsiblePerson))]
         public ICollection<RoomModel> Rooms { get; set; } = new List<RoomModel>();
     }
 }

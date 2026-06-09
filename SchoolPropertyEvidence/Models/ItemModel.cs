@@ -26,6 +26,7 @@ namespace SchoolPropertyEvidence.Models {
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
+        [InverseProperty(nameof(CategoryModel.Items))]
         public CategoryModel Category { get; set; } = null!;
 
         [Required]
@@ -33,6 +34,7 @@ namespace SchoolPropertyEvidence.Models {
         public int RoomId { get; set; }
 
         [ForeignKey(nameof(RoomId))]
+        [InverseProperty(nameof(RoomModel.Items))]
         public RoomModel Room { get; set; } = null!;
 
         [Required]
