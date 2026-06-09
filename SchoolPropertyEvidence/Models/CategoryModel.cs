@@ -17,6 +17,7 @@ namespace SchoolPropertyEvidence.Models {
         [Column("description")]
         public string? Description { get; set; }
 
+        [InverseProperty(nameof(ItemModel.Category))]
         public ICollection<ItemModel> Items { get; set; } = new List<ItemModel>();
     }
 }
