@@ -1,34 +1,78 @@
 @page "/add"
+@inject IHttpClientFactory HttpFactory
+@inject IJSRuntime JS
 @inject NavigationManager Nav
+
+@using System.Net.Http.Headers
+@using System.Net.Http.Json
 
 <PageTitle>Add Record</PageTitle>
 
-<h1>Add Record</h1>
-<p>Fill in the fields below to add a new mock database item.</p>
+<h1>Pøidat záznam</h1>
 
 <div class="mb-3">
-    <label class="form-label">Name</label>
-    <input class="form-control" @bind="Name" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Category</label>
-    <input class="form-control" @bind="Category" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Room</label>
-    <input class="form-control" @bind="Room" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Owner</label>
-    <input class="form-control" @bind="Owner" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Quantity</label>
-    <input type="number" class="form-control" @bind="Quantity" />
+    <label class="form-label">Typ</label>
+    <select class="form-select" @bind="AddType">
+        <option value="Item">Položka (Item)</option>
+        <option value="Room">Místnost (Room)</option>
+    </select>
 </div>
 
-<button class="btn btn-success me-2" @onclick="Save">Save</button>
-<button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+@if (AddType == "Item")
+{
+    <EditForm Model="itemModel" OnValidSubmit="Save">
+        <div class="mb-3">
+            <label class="form-label">Inventory number</label>
+            <InputText class="form-control" @bind-Value="itemModel.InventoryNumber" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Item name</label>
+            <InputText class="form-control" @bind-Value="itemModel.ItemName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" @bind-Value="itemModel.Description" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" @bind="itemModel.CategoryId">
+                <option value="">-- vyber --</option>
+                @foreach (var c in categories) { <option value="@c.Id">@c.Name</option> }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Room</label>
+            <select class="form-select" @bind="itemModel.RoomId">
+                <option value="">-- vyber --</option>
+                @foreach (var r in rooms) { <option value="@r.Id">@r.Name</option> }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <InputCheckbox class="form-check-input" @bind-Value="itemModel.IsActive" />
+            <label class="form-check-label">In use (IsActive)</label>
+        </div>
+        <button class="btn btn-success me-2" type="submit">Save item</button>
+        <button class="btn btn-secondary" type="button" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}
+else
+{
+    <EditForm Model="roomModel" OnValidSubmit="Save">
+        <div class="mb-3">
+            <label class="form-label">Room name</label>
+            <InputText class="form-control" @bind-Value="roomModel.RoomName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Responsible person</label>
+            <select class="form-select" @bind="roomModel.ResponsiblePersonId">
+                <option value="">-- vyber --</option>
+                @foreach (var p in people) { <option value="@p.Id">@p.Name</option> }
+            </select>
+        </div>
+        <button class="btn btn-success me-2" type="submit">Save room</button>
+        <button class="btn btn-secondary" type="button" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}
 
 @if (!string.IsNullOrEmpty(Message))
 {
@@ -36,20 +80,135 @@
 }
 
 @code {
-    private string Name;
-    private string Category;
-    private string Room;
-    private string Owner;
-    private int Quantity = 1;
-    private string Message;
+    private string AddType { get; set; } = "Item";
 
-    private void Save()
+    // Item create model (fields match backend ItemModel)
+    private ItemCreateDto itemModel = new()
     {
-        Message = "Mock record added successfully. (No backend yet.)";
+        InventoryNumber = "",
+        ItemName = "",
+        Description = "",
+        CategoryId = null,
+        RoomId = null,
+        IsActive = true
+    };
+
+    // Room create model (fields match backend RoomModel)
+    private RoomCreateDto roomModel = new()
+    {
+        RoomName = "",
+        ResponsiblePersonId = null
+    };
+
+    private List<LookupDto> categories = new();
+    private List<LookupDto> rooms = new();
+    private List<LookupDto> people = new();
+
+    private string Message = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLookups();
     }
 
-    private void Cancel()
+    private async Task LoadLookups()
     {
-        Nav.NavigateTo("/home");
+        var http = await CreateAuthorizedClient();
+        // pokud nìkterý endpoint neexistuje, vrátí prázdný seznam
+        try
+        {
+            categories = await http.GetFromJsonAsync<List<LookupDto>>("api/categories") ?? new();
+        }
+        catch { categories = new(); }
+
+        try
+        {
+            rooms = await http.GetFromJsonAsync<List<LookupDto>>("api/rooms") ?? new();
+        }
+        catch { rooms = new(); }
+
+        try
+        {
+            people = await http.GetFromJsonAsync<List<LookupDto>>("api/people") ?? new();
+        }
+        catch { people = new(); }
+    }
+
+    private async Task Save()
+    {
+        var http = await CreateAuthorizedClient();
+
+        if (AddType == "Item")
+        {
+            // ensure required fields
+            if (string.IsNullOrWhiteSpace(itemModel.InventoryNumber) || string.IsNullOrWhiteSpace(itemModel.ItemName) || itemModel.CategoryId == null || itemModel.RoomId == null)
+            {
+                Message = "Vyplòte prosím povinná pole pro položku (inventory number, item name, category, room).";
+                return;
+            }
+
+            var resp = await http.PostAsJsonAsync("api/items", itemModel);
+            if (resp.IsSuccessStatusCode)
+            {
+                Message = "Položka byla úspìšnì pøidána.";
+                Nav.NavigateTo("/home");
+            }
+            else
+            {
+                Message = $"Chyba pøi vytváøení položky: {resp.StatusCode}";
+            }
+        }
+        else // Room
+        {
+            if (string.IsNullOrWhiteSpace(roomModel.RoomName) || roomModel.ResponsiblePersonId == null)
+            {
+                Message = "Vyplòte prosím povinná pole pro místnost (room name, responsible person).";
+                return;
+            }
+
+            var resp = await http.PostAsJsonAsync("api/rooms", roomModel);
+            if (resp.IsSuccessStatusCode)
+            {
+                Message = "Místnost byla úspìšnì pøidána.";
+                Nav.NavigateTo("/home");
+            }
+            else
+            {
+                Message = $"Chyba pøi vytváøení místnosti: {resp.StatusCode}";
+            }
+        }
+    }
+
+    private void Cancel() => Nav.NavigateTo("/home");
+
+    private async Task<HttpClient> CreateAuthorizedClient()
+    {
+        var client = HttpFactory.CreateClient("ServerAPI");
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
+        if (!string.IsNullOrEmpty(token))
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        return client;
+    }
+
+    private class ItemCreateDto
+    {
+        public string InventoryNumber { get; set; } = "";
+        public string ItemName { get; set; } = "";
+        public string? Description { get; set; }
+        public int? CategoryId { get; set; }
+        public int? RoomId { get; set; }
+        public bool IsActive { get; set; } = true;
+    }
+
+    private class RoomCreateDto
+    {
+        public string RoomName { get; set; } = "";
+        public int? ResponsiblePersonId { get; set; }
+    }
+
+    private class LookupDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
     }
 }
