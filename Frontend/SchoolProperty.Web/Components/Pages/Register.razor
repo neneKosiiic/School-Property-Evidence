@@ -3,19 +3,141 @@
 @inject IHttpClientFactory HttpFactory
 @inject NavigationManager Nav
 
-<h3>Register</h3>
+<div class="form-page">
+    <div class="form-card">
+        <h3 class="form-title">Register</h3>
 
-<div>
-    <input @bind="firstName" placeholder="First Name" />
-    <input @bind="lastName" placeholder="Last Name" />
-    <input @bind="email" placeholder="Email" />
-    <input @bind="password" type="password" placeholder="Password" />
-    <button @onclick="HandleRegister">Register</button>
+        <div class="form-group">
+            <label>First Name</label>
+            <input @bind="firstName" placeholder="Enter your first name" />
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input @bind="lastName" placeholder="Enter your last name" />
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input @bind="email" placeholder="Enter your email" />
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input @bind="password" type="password" placeholder="Enter your password" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <p class="@(message.StartsWith("Registration successful") ? "form-success" : "form-error")">@message</p>
+        }
+
+        <button class="form-btn" @onclick="HandleRegister">Register</button>
+
+        <p class="form-link"><a href="/login">Already have an account? Login</a></p>
+    </div>
 </div>
 
-<p>@message</p>
+<style>
+    .form-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f5f5f5;
+    }
 
-<p><a href="/login">Login</a></p>
+    .form-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 40px 36px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .form-title {
+        margin: 0 0 28px 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #222;
+        text-align: center;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 18px;
+    }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            padding: 10px 12px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+            .form-group input:focus {
+                border-color: #7c3aed;
+            }
+
+    .form-btn {
+        width: 100%;
+        padding: 11px;
+        margin-top: 8px;
+        background-color: #7c3aed;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .form-btn:hover {
+            background-color: #6d28d9;
+        }
+
+    .form-error {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin: 0 0 12px 0;
+    }
+
+    .form-success {
+        color: #16a34a;
+        font-size: 0.875rem;
+        margin: 0 0 12px 0;
+    }
+
+    .form-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+        .form-link a {
+            color: #7c3aed;
+            text-decoration: none;
+        }
+
+            .form-link a:hover {
+                text-decoration: underline;
+            }
+</style>
 
 @code {
     private string firstName;
@@ -37,8 +159,6 @@
         if (response.IsSuccessStatusCode)
         {
             message = "Registration successful. Please login.";
-            // Optionally navigate to login
-            // Nav.NavigateTo("/login");
         }
         else
         {
