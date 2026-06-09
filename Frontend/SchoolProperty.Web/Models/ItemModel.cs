@@ -5,8 +5,8 @@ namespace SchoolProperty.Web.Models
 {
 
     [Table("items")]
-    public class ItemModel {
-
+    public class ItemModel
+    {
         [Key]
         [Column("id")]
         public int Id { get; set; }
