@@ -1,0 +1,63 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 8</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">Co jsme se naučili</text>
+
+  <!-- Card 1 -->
+  <rect x="40" y="95" width="390" height="90" rx="10" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <rect x="40" y="95" width="6" height="90" rx="3" fill="#89b4fa"/>
+  <text x="65" y="122" font-size="32">🔗</text>
+  <text x="110" y="120" font-size="13" font-weight="bold" fill="#89b4fa">Oddělení frontend / backend</text>
+  <text x="110" y="140" font-size="12" fill="#a6adc8">Dva samostatné projekty komunikující</text>
+  <text x="110" y="158" font-size="12" fill="#a6adc8">přes HTTP/JSON REST API</text>
+  <text x="380" y="175" font-size="10" fill="#45475a" text-anchor="end">Blazor + ASP.NET Core</text>
+
+  <!-- Card 2 -->
+  <rect x="470" y="95" width="390" height="90" rx="10" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <rect x="470" y="95" width="6" height="90" rx="3" fill="#f38ba8"/>
+  <text x="495" y="122" font-size="32">🔐</text>
+  <text x="540" y="120" font-size="13" font-weight="bold" fill="#f38ba8">JWT + BCrypt bezpečnost</text>
+  <text x="540" y="140" font-size="12" fill="#a6adc8">Tokenová autentizace, hashování hesel,</text>
+  <text x="540" y="158" font-size="12" fill="#a6adc8">bezpečné přihlašování uživatelů</text>
+  <text x="852" y="175" font-size="10" fill="#45475a" text-anchor="end">JWT · BCrypt</text>
+
+  <!-- Card 3 -->
+  <rect x="40" y="205" width="390" height="90" rx="10" fill="#313244" stroke="#f9e2af" stroke-width="1.5"/>
+  <rect x="40" y="205" width="6" height="90" rx="3" fill="#f9e2af"/>
+  <text x="65" y="232" font-size="32">🗄️</text>
+  <text x="110" y="230" font-size="13" font-weight="bold" fill="#f9e2af">MySQL přes Entity Framework</text>
+  <text x="110" y="250" font-size="12" fill="#a6adc8">ORM mapování, migrace databáze,</text>
+  <text x="110" y="268" font-size="12" fill="#a6adc8">dotazy bez psaní SQL ručně</text>
+  <text x="380" y="285" font-size="10" fill="#45475a" text-anchor="end">EF Core · Pomelo</text>
+
+  <!-- Card 4 -->
+  <rect x="470" y="205" width="390" height="90" rx="10" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <rect x="470" y="205" width="6" height="90" rx="3" fill="#a6e3a1"/>
+  <text x="495" y="232" font-size="32">📡</text>
+  <text x="540" y="230" font-size="13" font-weight="bold" fill="#a6e3a1">Blazor ↔ REST API komunikace</text>
+  <text x="540" y="250" font-size="12" fill="#a6adc8">HttpClient, JSON serializace,</text>
+  <text x="540" y="268" font-size="12" fill="#a6adc8">načítání dat do komponent</text>
+  <text x="852" y="285" font-size="10" fill="#45475a" text-anchor="end">HttpClient · System.Text.Json</text>
+
+  <!-- Card 5 -->
+  <rect x="40" y="315" width="820" height="90" rx="10" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="40" y="315" width="6" height="90" rx="3" fill="#cba6f7"/>
+  <text x="65" y="342" font-size="32">🌿</text>
+  <text x="110" y="340" font-size="13" font-weight="bold" fill="#cba6f7">Práce s Gitem a GitHubem</text>
+  <!-- Git workflow mini diagram -->
+  <rect x="110" y="350" width="80" height="24" rx="5" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="150" y="366" font-size="11" fill="#cba6f7" text-anchor="middle">větve</text>
+  <text x="200" y="366" font-size="12" fill="#6c7086">→</text>
+  <rect x="215" y="350" width="110" height="24" rx="5" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="270" y="366" font-size="11" fill="#cba6f7" text-anchor="middle">pull requesty</text>
+  <text x="335" y="366" font-size="12" fill="#6c7086">→</text>
+  <rect x="350" y="350" width="145" height="24" rx="5" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="422" y="366" font-size="11" fill="#cba6f7" text-anchor="middle">řešení konfliktů</text>
+  <text x="505" y="366" font-size="12" fill="#6c7086">→</text>
+  <rect x="520" y="350" width="120" height="24" rx="5" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="580" y="366" font-size="11" fill="#cba6f7" text-anchor="middle">code review</text>
+  <text x="110" y="393" font-size="12" fill="#a6adc8">Týmová spolupráce na jednom repozitáři — github.com/neneKosiiic/School-Property-Evidence</text>
+
+  <text x="450" y="478" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — SSSVT</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <!-- Header -->
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 2</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">Architektura</text>
+
+  <!-- Frontend box -->
+  <rect x="60" y="110" width="220" height="160" rx="10" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="60" y="110" width="220" height="36" rx="10" fill="#89b4fa"/>
+  <rect x="60" y="128" width="220" height="18" fill="#89b4fa"/>
+  <text x="170" y="134" font-size="15" font-weight="bold" fill="#1e1e2e" text-anchor="middle">Frontend</text>
+  <text x="170" y="168" font-size="13" fill="#89b4fa" text-anchor="middle">Blazor Server</text>
+  <text x="170" y="188" font-size="13" fill="#a6adc8" text-anchor="middle">.NET 10</text>
+  <text x="170" y="212" font-size="12" fill="#6c7086" text-anchor="middle">port 5000 / 5001</text>
+  <text x="170" y="234" font-size="11" fill="#585b70" text-anchor="middle">C# · Razor</text>
+
+  <!-- Backend box -->
+  <rect x="560" y="110" width="240" height="160" rx="10" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="560" y="110" width="240" height="36" rx="10" fill="#cba6f7"/>
+  <rect x="560" y="128" width="240" height="18" fill="#cba6f7"/>
+  <text x="680" y="134" font-size="15" font-weight="bold" fill="#1e1e2e" text-anchor="middle">Backend (API)</text>
+  <text x="680" y="168" font-size="13" fill="#cba6f7" text-anchor="middle">ASP.NET Core</text>
+  <text x="680" y="188" font-size="13" fill="#a6adc8" text-anchor="middle">.NET 10</text>
+  <text x="680" y="212" font-size="12" fill="#6c7086" text-anchor="middle">port 5146</text>
+  <text x="680" y="234" font-size="11" fill="#585b70" text-anchor="middle">REST API · C#</text>
+
+  <!-- Arrow: Frontend -> Backend (HTTP/JSON) -->
+  <line x1="282" y1="175" x2="558" y2="175" stroke="#a6e3a1" stroke-width="2" marker-end="url(#arrowG)"/>
+  <text x="420" y="162" font-size="12" fill="#a6e3a1" text-anchor="middle">HTTP / JSON</text>
+  <text x="420" y="178" font-size="10" fill="#6c7086" text-anchor="middle">požadavky</text>
+
+  <!-- Arrow: Backend -> Frontend (JWT) -->
+  <line x1="558" y1="220" x2="282" y2="220" stroke="#fab387" stroke-width="2" marker-end="url(#arrowO)"/>
+  <text x="420" y="213" font-size="12" fill="#fab387" text-anchor="middle">JWT token</text>
+  <text x="420" y="233" font-size="10" fill="#6c7086" text-anchor="middle">odpovědi</text>
+
+  <!-- EF Core arrow down -->
+  <line x1="680" y1="272" x2="680" y2="330" stroke="#f9e2af" stroke-width="2" marker-end="url(#arrowY)"/>
+  <text x="720" y="308" font-size="11" fill="#f9e2af">Entity Framework Core</text>
+
+  <!-- MySQL box -->
+  <rect x="560" y="332" width="240" height="90" rx="10" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
+  <rect x="560" y="332" width="240" height="34" rx="10" fill="#f9e2af"/>
+  <rect x="560" y="348" width="240" height="18" fill="#f9e2af"/>
+  <text x="680" y="355" font-size="15" font-weight="bold" fill="#1e1e2e" text-anchor="middle">MySQL databáze</text>
+  <text x="680" y="388" font-size="13" fill="#f9e2af" text-anchor="middle">školní server</text>
+  <text x="680" y="408" font-size="11" fill="#585b70" text-anchor="middle">Pomelo · EF Core</text>
+
+  <!-- Legend -->
+  <rect x="60" y="332" width="430" height="90" rx="10" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="80" y="356" font-size="13" font-weight="bold" fill="#cdd6f4">Oddělené části</text>
+  <line x1="80" y1="370" x2="90" y2="370" stroke="#89b4fa" stroke-width="2"/>
+  <text x="96" y="374" font-size="12" fill="#a6adc8">Frontend — UI v prohlížeči uživatele</text>
+  <line x1="80" y1="390" x2="90" y2="390" stroke="#cba6f7" stroke-width="2"/>
+  <text x="96" y="394" font-size="12" fill="#a6adc8">Backend — API server, obsluhuje data</text>
+  <line x1="80" y1="410" x2="90" y2="410" stroke="#f9e2af" stroke-width="2"/>
+  <text x="96" y="414" font-size="12" fill="#a6adc8">Databáze — perzistentní uložení</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a6e3a1"/>
+    </marker>
+    <marker id="arrowO" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#fab387"/>
+    </marker>
+    <marker id="arrowY" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f9e2af"/>
+    </marker>
+  </defs>
+
+  <!-- Footer -->
+  <text x="450" y="478" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — github.com/neneKosiiic/School-Property-Evidence</text>
+</svg>

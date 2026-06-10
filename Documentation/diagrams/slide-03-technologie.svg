@@ -1,0 +1,73 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 3</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">Technologie</text>
+
+  <!-- Table header -->
+  <rect x="60" y="95" width="780" height="38" rx="6" fill="#45475a"/>
+  <text x="160" y="120" font-size="14" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Vrstva</text>
+  <line x1="260" y1="95" x2="260" y2="133" stroke="#585b70" stroke-width="1"/>
+  <text x="570" y="120" font-size="14" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Technologie</text>
+
+  <!-- Row 1: Frontend -->
+  <rect x="60" y="133" width="780" height="58" fill="#1e1e2e"/>
+  <rect x="60" y="133" width="780" height="58" rx="0" fill="#313244" opacity="0.5"/>
+  <rect x="62" y="135" width="6" height="54" fill="#89b4fa" rx="3"/>
+  <text x="160" y="167" font-size="14" fill="#89b4fa" text-anchor="middle" font-weight="bold">Frontend</text>
+  <line x1="260" y1="133" x2="260" y2="191" stroke="#45475a" stroke-width="1"/>
+  <!-- Tech badges -->
+  <rect x="275" y="147" width="110" height="28" rx="14" fill="#89b4fa" opacity="0.2" stroke="#89b4fa" stroke-width="1"/>
+  <text x="330" y="166" font-size="12" fill="#89b4fa" text-anchor="middle">Blazor Server</text>
+  <rect x="395" y="147" width="40" height="28" rx="14" fill="#89b4fa" opacity="0.2" stroke="#89b4fa" stroke-width="1"/>
+  <text x="415" y="166" font-size="12" fill="#89b4fa" text-anchor="middle">C#</text>
+  <rect x="445" y="147" width="70" height="28" rx="14" fill="#89b4fa" opacity="0.2" stroke="#89b4fa" stroke-width="1"/>
+  <text x="480" y="166" font-size="12" fill="#89b4fa" text-anchor="middle">.NET 10</text>
+
+  <!-- Row 2: Backend -->
+  <rect x="60" y="191" width="780" height="58" fill="#181825"/>
+  <rect x="62" y="193" width="6" height="54" fill="#cba6f7" rx="3"/>
+  <text x="160" y="225" font-size="14" fill="#cba6f7" text-anchor="middle" font-weight="bold">Backend</text>
+  <line x1="260" y1="191" x2="260" y2="249" stroke="#45475a" stroke-width="1"/>
+  <rect x="275" y="205" width="160" height="28" rx="14" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="355" y="224" font-size="12" fill="#cba6f7" text-anchor="middle">ASP.NET Core Web API</text>
+  <rect x="445" y="205" width="40" height="28" rx="14" fill="#cba6f7" opacity="0.2" stroke="#cba6f7" stroke-width="1"/>
+  <text x="465" y="224" font-size="12" fill="#cba6f7" text-anchor="middle">C#</text>
+
+  <!-- Row 3: Databáze -->
+  <rect x="60" y="249" width="780" height="58" fill="#313244" opacity="0.5"/>
+  <rect x="62" y="251" width="6" height="54" fill="#f9e2af" rx="3"/>
+  <text x="160" y="283" font-size="14" fill="#f9e2af" text-anchor="middle" font-weight="bold">Databáze</text>
+  <line x1="260" y1="249" x2="260" y2="307" stroke="#45475a" stroke-width="1"/>
+  <rect x="275" y="263" width="60" height="28" rx="14" fill="#f9e2af" opacity="0.2" stroke="#f9e2af" stroke-width="1"/>
+  <text x="305" y="282" font-size="12" fill="#f9e2af" text-anchor="middle">MySQL</text>
+  <rect x="345" y="263" width="165" height="28" rx="14" fill="#f9e2af" opacity="0.2" stroke="#f9e2af" stroke-width="1"/>
+  <text x="427" y="282" font-size="12" fill="#f9e2af" text-anchor="middle">Entity Framework Core</text>
+  <rect x="520" y="263" width="65" height="28" rx="14" fill="#f9e2af" opacity="0.2" stroke="#f9e2af" stroke-width="1"/>
+  <text x="552" y="282" font-size="12" fill="#f9e2af" text-anchor="middle">Pomelo</text>
+
+  <!-- Row 4: Autentizace -->
+  <rect x="60" y="307" width="780" height="58" fill="#181825"/>
+  <rect x="62" y="309" width="6" height="54" fill="#f38ba8" rx="3"/>
+  <text x="160" y="341" font-size="14" fill="#f38ba8" text-anchor="middle" font-weight="bold">Autentizace</text>
+  <line x1="260" y1="307" x2="260" y2="365" stroke="#45475a" stroke-width="1"/>
+  <rect x="275" y="321" width="105" height="28" rx="14" fill="#f38ba8" opacity="0.2" stroke="#f38ba8" stroke-width="1"/>
+  <text x="327" y="340" font-size="12" fill="#f38ba8" text-anchor="middle">JWT tokeny</text>
+  <rect x="390" y="321" width="145" height="28" rx="14" fill="#f38ba8" opacity="0.2" stroke="#f38ba8" stroke-width="1"/>
+  <text x="462" y="340" font-size="12" fill="#f38ba8" text-anchor="middle">BCrypt hashování hesel</text>
+
+  <!-- Row 5: Verzování -->
+  <rect x="60" y="365" width="780" height="58" fill="#313244" opacity="0.5"/>
+  <rect x="62" y="367" width="6" height="54" fill="#a6e3a1" rx="3"/>
+  <text x="160" y="399" font-size="14" fill="#a6e3a1" text-anchor="middle" font-weight="bold">Verzování</text>
+  <line x1="260" y1="365" x2="260" y2="423" stroke="#45475a" stroke-width="1"/>
+  <rect x="275" y="379" width="45" height="28" rx="14" fill="#a6e3a1" opacity="0.2" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="297" y="398" font-size="12" fill="#a6e3a1" text-anchor="middle">Git</text>
+  <rect x="330" y="379" width="75" height="28" rx="14" fill="#a6e3a1" opacity="0.2" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="367" y="398" font-size="12" fill="#a6e3a1" text-anchor="middle">GitHub</text>
+
+  <!-- Bottom border -->
+  <rect x="60" y="423" width="780" height="2" fill="#45475a"/>
+
+  <text x="450" y="478" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — github.com/neneKosiiic/School-Property-Evidence</text>
+</svg>

@@ -1,0 +1,77 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 7</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">API endpointy</text>
+
+  <!-- Table header -->
+  <rect x="40" y="90" width="820" height="38" rx="6" fill="#45475a"/>
+  <text x="95" y="115" font-size="13" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Metoda</text>
+  <line x1="155" y1="90" x2="155" y2="128" stroke="#585b70" stroke-width="1"/>
+  <text x="310" y="115" font-size="13" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Endpoint</text>
+  <line x1="460" y1="90" x2="460" y2="128" stroke="#585b70" stroke-width="1"/>
+  <text x="650" y="115" font-size="13" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Funkce</text>
+
+  <!-- Row 1: POST /register -->
+  <rect x="40" y="128" width="820" height="58" fill="#1e1e2e"/>
+  <rect x="40" y="128" width="820" height="58" fill="#313244" opacity="0.4"/>
+  <rect x="55" y="143" width="65" height="24" rx="5" fill="#a6e3a1" opacity="0.25" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="87" y="160" font-size="12" font-weight="bold" fill="#a6e3a1" text-anchor="middle">POST</text>
+  <line x1="155" y1="128" x2="155" y2="186" stroke="#45475a" stroke-width="1"/>
+  <text x="165" y="153" font-size="13" fill="#cdd6f4">/api/auth/</text>
+  <text x="165" y="172" font-size="13" fill="#89b4fa">register</text>
+  <line x1="460" y1="128" x2="460" y2="186" stroke="#45475a" stroke-width="1"/>
+  <text x="475" y="163" font-size="13" fill="#a6adc8">Registrace nového uživatele</text>
+
+  <!-- Row 2: POST /login -->
+  <rect x="40" y="186" width="820" height="58" fill="#181825"/>
+  <rect x="55" y="201" width="65" height="24" rx="5" fill="#a6e3a1" opacity="0.25" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="87" y="218" font-size="12" font-weight="bold" fill="#a6e3a1" text-anchor="middle">POST</text>
+  <line x1="155" y1="186" x2="155" y2="244" stroke="#45475a" stroke-width="1"/>
+  <text x="165" y="211" font-size="13" fill="#cdd6f4">/api/auth/</text>
+  <text x="165" y="230" font-size="13" fill="#89b4fa">login</text>
+  <line x1="460" y1="186" x2="460" y2="244" stroke="#45475a" stroke-width="1"/>
+  <text x="475" y="215" font-size="13" fill="#a6adc8">Přihlášení — vrátí</text>
+  <text x="475" y="234" font-size="13" fill="#f9e2af">JWT token</text>
+
+  <!-- Row 3: GET /items -->
+  <rect x="40" y="244" width="820" height="58" fill="#313244" opacity="0.4"/>
+  <rect x="55" y="259" width="50" height="24" rx="5" fill="#89b4fa" opacity="0.25" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="80" y="276" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">GET</text>
+  <line x1="155" y1="244" x2="155" y2="302" stroke="#45475a" stroke-width="1"/>
+  <text x="165" y="269" font-size="13" fill="#cdd6f4">/api/</text>
+  <text x="165" y="288" font-size="13" fill="#89b4fa">items</text>
+  <line x1="460" y1="244" x2="460" y2="302" stroke="#45475a" stroke-width="1"/>
+  <text x="475" y="269" font-size="13" fill="#a6adc8">Všechny předměty</text>
+  <text x="475" y="288" font-size="13" fill="#a6adc8">s kategorií a místností</text>
+
+  <!-- Row 4: DELETE /items/{id} -->
+  <rect x="40" y="302" width="820" height="58" fill="#181825"/>
+  <rect x="55" y="317" width="70" height="24" rx="5" fill="#f38ba8" opacity="0.25" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="90" y="334" font-size="12" font-weight="bold" fill="#f38ba8" text-anchor="middle">DELETE</text>
+  <line x1="155" y1="302" x2="155" y2="360" stroke="#45475a" stroke-width="1"/>
+  <text x="165" y="327" font-size="13" fill="#cdd6f4">/api/items/</text>
+  <text x="165" y="346" font-size="13" fill="#89b4fa">{id}</text>
+  <line x1="460" y1="302" x2="460" y2="360" stroke="#45475a" stroke-width="1"/>
+  <text x="475" y="341" font-size="13" fill="#a6adc8">Smazání předmětu dle ID</text>
+
+  <!-- Row 5: GET /rooms/withcounts -->
+  <rect x="40" y="360" width="820" height="58" fill="#313244" opacity="0.4"/>
+  <rect x="55" y="375" width="50" height="24" rx="5" fill="#89b4fa" opacity="0.25" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="80" y="392" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">GET</text>
+  <line x1="155" y1="360" x2="155" y2="418" stroke="#45475a" stroke-width="1"/>
+  <text x="165" y="385" font-size="13" fill="#cdd6f4">/api/rooms/</text>
+  <text x="165" y="404" font-size="13" fill="#89b4fa">withcounts</text>
+  <line x1="460" y1="360" x2="460" y2="418" stroke="#45475a" stroke-width="1"/>
+  <text x="475" y="391" font-size="13" fill="#a6adc8">Místnosti s počty</text>
+  <text x="475" y="410" font-size="13" fill="#a6adc8">majetku dle kategorií</text>
+
+  <!-- Bottom border -->
+  <rect x="40" y="418" width="820" height="2" fill="#45475a"/>
+
+  <!-- Auth note -->
+  <rect x="40" y="428" width="820" height="28" rx="0" fill="#181825"/>
+  <text x="450" y="447" font-size="11" fill="#6c7086" text-anchor="middle">🔐 Endpointy /api/items a /api/rooms vyžadují platný JWT token v hlavičce Authorization: Bearer &lt;token&gt;</text>
+
+  <text x="450" y="488" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — github.com/neneKosiiic/School-Property-Evidence</text>
+</svg>

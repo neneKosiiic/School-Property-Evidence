@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 9</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">Možná vylepšení</text>
+
+  <!-- Roadmap line -->
+  <line x1="60" y1="370" x2="840" y2="370" stroke="#45475a" stroke-width="2"/>
+
+  <!-- Item 1: Role -->
+  <line x1="120" y1="370" x2="120" y2="280" stroke="#89b4fa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="120" cy="370" r="10" fill="#89b4fa"/>
+  <rect x="50" y="200" width="140" height="74" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="120" y="222" font-size="20" text-anchor="middle">👥</text>
+  <text x="120" y="244" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">Role uživatelů</text>
+  <text x="120" y="262" font-size="11" fill="#a6adc8" text-anchor="middle">admin vs. běžný</text>
+  <text x="120" y="278" font-size="10" fill="#585b70" text-anchor="middle">základ v kódu existuje</text>
+  <text x="120" y="395" font-size="10" fill="#6c7086" text-anchor="middle">1</text>
+
+  <!-- Item 2: Filtrování -->
+  <line x1="280" y1="370" x2="280" y2="280" stroke="#cba6f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="280" cy="370" r="10" fill="#cba6f7"/>
+  <rect x="210" y="200" width="140" height="74" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="280" y="222" font-size="20" text-anchor="middle">🔍</text>
+  <text x="280" y="244" font-size="12" font-weight="bold" fill="#cba6f7" text-anchor="middle">Filtrování</text>
+  <text x="280" y="262" font-size="11" fill="#a6adc8" text-anchor="middle">a vyhledávání</text>
+  <text x="280" y="278" font-size="10" fill="#585b70" text-anchor="middle">v tabulce</text>
+  <text x="280" y="395" font-size="10" fill="#6c7086" text-anchor="middle">2</text>
+
+  <!-- Item 3: Export -->
+  <line x1="440" y1="370" x2="440" y2="280" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="440" cy="370" r="10" fill="#f9e2af"/>
+  <rect x="370" y="200" width="140" height="74" rx="8" fill="#313244" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="440" y="222" font-size="20" text-anchor="middle">📤</text>
+  <text x="440" y="244" font-size="12" font-weight="bold" fill="#f9e2af" text-anchor="middle">Export</text>
+  <text x="440" y="262" font-size="11" fill="#a6adc8" text-anchor="middle">do PDF nebo</text>
+  <text x="440" y="278" font-size="10" fill="#585b70" text-anchor="middle">Excel souboru</text>
+  <text x="440" y="395" font-size="10" fill="#6c7086" text-anchor="middle">3</text>
+
+  <!-- Item 4: Historie -->
+  <line x1="600" y1="370" x2="600" y2="280" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="600" cy="370" r="10" fill="#a6e3a1"/>
+  <rect x="530" y="200" width="140" height="74" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="600" y="222" font-size="20" text-anchor="middle">📜</text>
+  <text x="600" y="244" font-size="12" font-weight="bold" fill="#a6e3a1" text-anchor="middle">Historie změn</text>
+  <text x="600" y="262" font-size="11" fill="#a6adc8" text-anchor="middle">kdo co kdy</text>
+  <text x="600" y="278" font-size="10" fill="#585b70" text-anchor="middle">upravil (audit log)</text>
+  <text x="600" y="395" font-size="10" fill="#6c7086" text-anchor="middle">4</text>
+
+  <!-- Item 5: Přiřazení osobě -->
+  <line x1="760" y1="370" x2="760" y2="280" stroke="#fab387" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="760" cy="370" r="10" fill="#fab387"/>
+  <rect x="690" y="200" width="160" height="74" rx="8" fill="#313244" stroke="#fab387" stroke-width="1.5"/>
+  <text x="770" y="222" font-size="20" text-anchor="middle">🏷️</text>
+  <text x="770" y="244" font-size="12" font-weight="bold" fill="#fab387" text-anchor="middle">Přiřazení osobě</text>
+  <text x="770" y="262" font-size="11" fill="#a6adc8" text-anchor="middle">majetek přiřadit</text>
+  <text x="770" y="278" font-size="10" fill="#585b70" text-anchor="middle">konkrétní osobě</text>
+  <text x="760" y="395" font-size="10" fill="#6c7086" text-anchor="middle">5</text>
+
+  <!-- Current state label -->
+  <rect x="40" y="420" width="820" height="36" rx="8" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="450" y="443" font-size="12" fill="#6c7086" text-anchor="middle">Aktuální stav: MVP (Minimum Viable Product) — základní evidence funguje ✓</text>
+
+  <!-- Legend -->
+  <rect x="40" y="90" width="820" height="100" rx="8" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="450" y="115" font-size="14" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Plánovaný rozvoj projektu</text>
+  <text x="450" y="143" font-size="12" fill="#a6adc8" text-anchor="middle">Aplikace je navržena modulárně — každé vylepšení lze přidat nezávisle</text>
+  <text x="450" y="165" font-size="11" fill="#585b70" text-anchor="middle">Základ pro role (admin/user) je již implementován v datovém modelu i JWT tokenu</text>
+
+  <text x="450" y="488" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — github.com/neneKosiiic/School-Property-Evidence</text>
+</svg>

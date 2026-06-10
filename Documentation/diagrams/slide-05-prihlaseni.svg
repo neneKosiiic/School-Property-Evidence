@@ -1,0 +1,96 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="500" fill="#1e1e2e"/>
+  <rect width="900" height="70" fill="#313244"/>
+  <text x="40" y="30" font-size="13" fill="#6c7086">Slide 5</text>
+  <text x="40" y="54" font-size="26" font-weight="bold" fill="#cdd6f4">Přihlášení a registrace</text>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a6adc8"/>
+    </marker>
+    <marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a6e3a1"/>
+    </marker>
+    <marker id="arrB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#89b4fa"/>
+    </marker>
+  </defs>
+
+  <!-- === REGISTRACE === -->
+  <text x="200" y="100" font-size="16" font-weight="bold" fill="#cba6f7" text-anchor="middle">REGISTRACE</text>
+  <text x="200" y="118" font-size="12" fill="#6c7086" text-anchor="middle">POST /api/auth/register</text>
+
+  <!-- Step boxes - registration -->
+  <rect x="50" y="130" width="130" height="44" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="115" y="150" font-size="12" fill="#cdd6f4" text-anchor="middle">Uživatel vyplní</text>
+  <text x="115" y="166" font-size="12" fill="#cdd6f4" text-anchor="middle">email + heslo</text>
+
+  <line x1="182" y1="152" x2="210" y2="152" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="212" y="130" width="130" height="44" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="277" y="150" font-size="12" fill="#cdd6f4" text-anchor="middle">BCrypt hash</text>
+  <text x="277" y="166" font-size="12" fill="#f38ba8" text-anchor="middle">hesla</text>
+
+  <line x1="344" y1="152" x2="372" y2="152" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="374" y="130" width="130" height="44" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="439" y="150" font-size="12" fill="#cdd6f4" text-anchor="middle">Uložení do</text>
+  <text x="439" y="166" font-size="12" fill="#f9e2af" text-anchor="middle">MySQL</text>
+
+  <!-- BCrypt note -->
+  <rect x="190" y="190" width="260" height="34" rx="6" fill="#181825" stroke="#f38ba8" stroke-width="1"/>
+  <text x="320" y="210" font-size="11" fill="#f38ba8" text-anchor="middle">🔒 Heslo nikdy uloženo v čitelné podobě!</text>
+
+  <!-- === PŘIHLÁŠENÍ === -->
+  <line x1="540" y1="80" x2="540" y2="450" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <text x="720" y="100" font-size="16" font-weight="bold" fill="#89b4fa" text-anchor="middle">PŘIHLÁŠENÍ</text>
+  <text x="720" y="118" font-size="12" fill="#6c7086" text-anchor="middle">POST /api/auth/login</text>
+
+  <rect x="570" y="130" width="130" height="44" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="635" y="150" font-size="12" fill="#cdd6f4" text-anchor="middle">Uživatel zadá</text>
+  <text x="635" y="166" font-size="12" fill="#cdd6f4" text-anchor="middle">email + heslo</text>
+
+  <line x1="702" y1="152" x2="730" y2="152" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="732" y="130" width="130" height="44" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="797" y="150" font-size="12" fill="#cdd6f4" text-anchor="middle">Ověření hesla</text>
+  <text x="797" y="166" font-size="12" fill="#f38ba8" text-anchor="middle">BCrypt</text>
+
+  <!-- Login flow step 2 -->
+  <line x1="797" y1="176" x2="797" y2="210" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="635" y="212" width="230" height="44" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="750" y="232" font-size="12" fill="#cdd6f4" text-anchor="middle">Vydání JWT tokenu</text>
+  <text x="750" y="248" font-size="12" fill="#a6e3a1" text-anchor="middle">platnost 1 hodina</text>
+
+  <line x1="750" y1="258" x2="750" y2="292" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="635" y="294" width="230" height="44" rx="8" fill="#313244" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="750" y="314" font-size="12" fill="#cdd6f4" text-anchor="middle">Token uložen do</text>
+  <text x="750" y="330" font-size="12" fill="#f9e2af" text-anchor="middle">localStorage prohlížeče</text>
+
+  <line x1="750" y1="340" x2="750" y2="374" stroke="#a6adc8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="635" y="376" width="230" height="44" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="750" y="396" font-size="12" fill="#cdd6f4" text-anchor="middle">Každý API požadavek</text>
+  <text x="750" y="412" font-size="12" fill="#89b4fa" text-anchor="middle">odesílán s tokenem</text>
+
+  <!-- JWT structure note -->
+  <rect x="50" y="260" width="430" height="150" rx="8" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="265" y="282" font-size="13" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Struktura JWT tokenu</text>
+  <rect x="70" y="295" width="115" height="30" rx="6" fill="#f38ba8" opacity="0.3" stroke="#f38ba8" stroke-width="1"/>
+  <text x="127" y="315" font-size="12" fill="#f38ba8" text-anchor="middle">Header</text>
+  <text x="192" y="315" font-size="16" fill="#6c7086">.</text>
+  <rect x="200" y="295" width="115" height="30" rx="6" fill="#cba6f7" opacity="0.3" stroke="#cba6f7" stroke-width="1"/>
+  <text x="257" y="315" font-size="12" fill="#cba6f7" text-anchor="middle">Payload</text>
+  <text x="322" y="315" font-size="16" fill="#6c7086">.</text>
+  <rect x="330" y="295" width="130" height="30" rx="6" fill="#a6e3a1" opacity="0.3" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="395" y="315" font-size="12" fill="#a6e3a1" text-anchor="middle">Signature</text>
+  <text x="70" y="350" font-size="11" fill="#a6adc8">alg, typ</text>
+  <text x="200" y="350" font-size="11" fill="#a6adc8">userId, email, role, exp</text>
+  <text x="350" y="350" font-size="11" fill="#a6adc8">HMAC podpis</text>
+  <text x="265" y="392" font-size="11" fill="#6c7086" text-anchor="middle">Nelze zfalšovat bez tajného klíče serveru</text>
+
+  <text x="450" y="478" font-size="12" fill="#585b70" text-anchor="middle">Evidence školního majetku — github.com/neneKosiiic/School-Property-Evidence</text>
+</svg>
