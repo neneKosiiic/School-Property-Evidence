@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SchoolProperty.Web.Models {
+namespace SchoolPropertyEvidence.Models {
 
     [Table("people")]
     public class PeopleModel {
@@ -33,6 +33,7 @@ namespace SchoolProperty.Web.Models {
         [Column("is_active")]
         public bool IsActive { get; set; }
 
+        [InverseProperty(nameof(RoomModel.ResponsiblePerson))]
         public ICollection<RoomModel> Rooms { get; set; } = new List<RoomModel>();
     }
 }

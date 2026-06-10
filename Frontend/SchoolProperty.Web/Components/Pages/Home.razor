@@ -1,5 +1,4 @@
 ﻿@page "/home"
-@using SchoolProperty.Web.Models
 @using SchoolPropertyEvidence.Models
 @inject NavigationManager Nav
 @inject IHttpClientFactory HttpFactory
@@ -24,7 +23,7 @@
             <tbody>
                 @foreach (var item in Items)
                 {
-                    <tr>
+                    <tr class="clickable-row" @onclick="() => NavigateToRoom(item.Id)">
                         <td>@item.Id</td>
                         <td>@item.RoomName</td>
                         <td>@(string.IsNullOrEmpty(item.ResponsibleFirstName) ? string.Empty : $"{item.ResponsibleFirstName} {item.ResponsibleLastName}")</td>
@@ -73,30 +72,34 @@
         color: #333;
     }
 
-    .property-table thead tr {
-        background-color: #7c3aed;
-        color: #fff;
-    }
+        .property-table thead tr {
+            background-color: #7c3aed;
+            color: #fff;
+        }
 
-    .property-table th {
-        padding: 11px 14px;
-        text-align: left;
-        font-weight: 500;
-        white-space: nowrap;
-    }
+        .property-table th {
+            padding: 11px 14px;
+            text-align: left;
+            font-weight: 500;
+            white-space: nowrap;
+        }
 
-    .property-table td {
-        padding: 10px 14px;
-        border-top: 1px solid #e0e0e0;
-        color: #444;
-    }
+        .property-table td {
+            padding: 10px 14px;
+            border-top: 1px solid #e0e0e0;
+            color: #444;
+        }
 
-    .property-table tbody tr:nth-child(even) {
-        background-color: #fafafa;
-    }
+        .property-table tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
 
-    .property-table tbody tr:hover {
-        background-color: #f3eeff;
+        .property-table tbody tr:hover {
+            background-color: #f3eeff;
+        }
+
+    .clickable-row {
+        cursor: pointer;
     }
 
     .home-actions {
@@ -120,31 +123,32 @@
         color: #fff;
     }
 
-    .btn-add:hover {
-        background-color: #6d28d9;
-    }
+        .btn-add:hover {
+            background-color: #6d28d9;
+        }
 
     .btn-delete {
         background-color: #dc2626;
         color: #fff;
     }
 
-    .btn-delete:hover {
-        background-color: #b91c1c;
-    }
+        .btn-delete:hover {
+            background-color: #b91c1c;
+        }
 
     .btn-edit {
         background-color: #f59e0b;
         color: #1a1a1a;
     }
 
-    .btn-edit:hover {
-        background-color: #d97706;
-    }
+        .btn-edit:hover {
+            background-color: #d97706;
+        }
 </style>
 
 @code {
     private List<RoomWithCountsDto> Items = new();
+
     private async Task InitializeItemsAsync()
     {
         try
@@ -158,10 +162,13 @@
             Items = new();
         }
     }
+
     protected override async Task OnInitializedAsync()
     {
         await InitializeItemsAsync();
     }
+
+    private void NavigateToRoom(int roomId) => Nav.NavigateTo($"/room?id={roomId}");
     private void NavigateAdd() => Nav.NavigateTo("/add");
     private void NavigateDelete() => Nav.NavigateTo("/delete");
     private void NavigateEdit() => Nav.NavigateTo("/edit");

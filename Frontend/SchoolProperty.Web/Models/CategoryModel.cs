@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SchoolProperty.Web.Models
-{
+namespace SchoolPropertyEvidence.Models {
 
     [Table("categories")]
     public class CategoryModel {
@@ -18,6 +17,7 @@ namespace SchoolProperty.Web.Models
         [Column("description")]
         public string? Description { get; set; }
 
+        [InverseProperty(nameof(ItemModel.Category))]
         public ICollection<ItemModel> Items { get; set; } = new List<ItemModel>();
     }
 }

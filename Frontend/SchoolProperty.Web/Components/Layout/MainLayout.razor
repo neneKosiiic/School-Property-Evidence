@@ -1,15 +1,33 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+@using System.Text.Json
+@using System.Text
 
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
-
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="top-row px-4 d-flex align-items-center justify-content-end gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <!-- Stock user profile SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="16" fill="#e0e0e0" />
+                    <circle cx="16" cy="13" r="5" fill="#9e9e9e" />
+                    <path d="M6 26c0-5.523 4.477-9 10-9s10 3.477 10 9" fill="#9e9e9e" />
+                </svg>
+                <span class="fw-semibold text-dark">@UserName</span>
+            </div>
+            @if (!string.IsNullOrEmpty(UserRole))
+            {
+                <span style="color: #7c3aed; font-weight: 600;">@UserRole</span>
+            }
+            <button style="border: 1px solid #dc2626; color: #dc2626; background: transparent; border-radius: 6px; padding: 4px 14px; font-weight: 500; cursor: pointer;"
+                    @onclick="Logout">
+                Logout
+            </button>
         </div>
-
         <article class="content px-4">
             @Body
         </article>
@@ -21,3 +39,59 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
+
+@code {
+    private string UserName = "";
+    private string UserRole = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        try
+        {
+            var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                var payload = ParseJwtPayload(token);
+                // Try common claim names for name and role
+                UserName = GetClaim(payload, "name", "unique_name", "given_name", "email");
+                UserRole = GetClaim(payload, "role", "roles", "http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
+                StateHasChanged();
+            }
+        }
+        catch { /* token missing or malformed — fields stay empty */ }
+    }
+
+    private static Dictionary<string, JsonElement> ParseJwtPayload(string token)
+    {
+        var parts = token.Split('.');
+        if (parts.Length < 2) return new();
+
+        var payload = parts[1];
+        // fix base64url padding
+        payload = payload.Replace('-', '+').Replace('_', '/');
+        switch (payload.Length % 4)
+        {
+            case 2: payload += "=="; break;
+            case 3: payload += "="; break;
+        }
+
+        var json = Encoding.UTF8.GetString(Convert.FromBase64String(payload));
+        return JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json) ?? new();
+    }
+
+    private async Task Logout()
+    {
+        await JS.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        Nav.NavigateTo("/login", forceLoad: true);
+    }
+
+    private static string GetClaim(Dictionary<string, JsonElement> payload, params string[] keys)
+    {
+        foreach (var key in keys)
+            if (payload.TryGetValue(key, out var val))
+                return val.ToString();
+        return "";
+    }
+}

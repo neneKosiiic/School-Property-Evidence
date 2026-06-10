@@ -1,59 +1,194 @@
-@page "/edit"
+﻿@page "/edit"
+@inject IHttpClientFactory HttpFactory
+@inject IJSRuntime JS
 @inject NavigationManager Nav
+
+@using System.Net.Http.Headers
+@using System.Net.Http.Json
 
 <PageTitle>Edit Record</PageTitle>
 
-<h1>Edit Record</h1>
+<h1>Upravit záznam</h1>
+
+@if (loadError)
+{
+    <div class="alert alert-danger">Nepodařilo se načíst data ze serveru.</div>
+}
 
 <div class="mb-3">
-    <label class="form-label">Select item</label>
-    <select class="form-select" @bind="SelectedItemId">
-        <option value="1">1 - Laptop</option>
-        <option value="2">2 - Projector</option>
-        <option value="3">3 - Desk</option>
-        <option value="4">4 - Whiteboard</option>
+    <label class="form-label">Vyberte položku</label>
+    <select class="form-select" @bind="SelectedItemId" @bind:after="LoadItem">
+        <option value="0">-- vyber --</option>
+        @foreach (var i in allItems)
+        {
+            <option value="@i.Id">@i.Id — @i.ItemName</option>
+        }
     </select>
 </div>
-<div class="mb-3">
-    <label class="form-label">Name</label>
-    <input class="form-control" @bind="Name" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Category</label>
-    <input class="form-control" @bind="Category" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Room</label>
-    <input class="form-control" @bind="Room" />
-</div>
-<div class="mb-3">
-    <label class="form-label">Owner</label>
-    <input class="form-control" @bind="Owner" />
-</div>
 
-<button class="btn btn-primary me-2" @onclick="Save">Save Changes</button>
-<button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+@if (editModel != null)
+{
+    <EditForm Model="editModel" OnValidSubmit="Save">
+        <div class="mb-3">
+            <label class="form-label">Item name</label>
+            <InputText class="form-control" @bind-Value="editModel.ItemName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" @bind-Value="editModel.Description" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" @bind="editModel.CategoryId">
+                <option value="0">-- vyber --</option>
+                @foreach (var c in categories)
+                {
+                    <option value="@c.Id">@c.CategoryName</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Room</label>
+            <select class="form-select" @bind="editModel.RoomId">
+                <option value="0">-- vyber --</option>
+                @foreach (var r in rooms)
+                {
+                    <option value="@r.Id">@r.RoomName</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <InputCheckbox class="form-check-input" @bind-Value="editModel.IsActive" />
+            <label class="form-check-label">In use (IsActive)</label>
+        </div>
+        <button class="btn btn-primary me-2" type="submit">Save Changes</button>
+        <button class="btn btn-secondary" type="button" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}
 
 @if (!string.IsNullOrEmpty(Message))
 {
-    <div class="alert alert-success mt-3">@Message</div>
+    <div class="alert alert-info mt-3">@Message</div>
 }
 
 @code {
-    private int SelectedItemId = 1;
-    private string Name = "Laptop";
-    private string Category = "Electronics";
-    private string Room = "Room A";
-    private string Owner = "John Doe";
-    private string Message;
+    [SupplyParameterFromQuery(Name = "itemId")]
+    public int PreselectedItemId { get; set; } = 0;
 
-    private void Save()
+    private int SelectedItemId = 0;
+    private ItemEditDto? editModel = null;
+    private bool loadError = false;
+    private string Message = "";
+
+    private List<ItemLookupDto> allItems = new();
+    private List<CategoryLookupDto> categories = new();
+    private List<RoomLookupDto> rooms = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        Message = $"Mock item {SelectedItemId} updated successfully. (No backend yet.)";
+        var http = await CreateAuthorizedClient();
+
+        try { allItems = await http.GetFromJsonAsync<List<ItemLookupDto>>("api/items") ?? new(); }
+        catch { loadError = true; }
+
+        try { categories = await http.GetFromJsonAsync<List<CategoryLookupDto>>("api/categories") ?? new(); }
+        catch { }
+
+        try { rooms = await http.GetFromJsonAsync<List<RoomLookupDto>>("api/rooms") ?? new(); }
+        catch { }
+
+        if (PreselectedItemId > 0)
+        {
+            SelectedItemId = PreselectedItemId;
+            LoadItem();
+        }
     }
 
-    private void Cancel()
+    private void LoadItem()
     {
-        Nav.NavigateTo("/home");
+        if (SelectedItemId == 0) { editModel = null; return; }
+
+        var item = allItems.FirstOrDefault(i => i.Id == SelectedItemId);
+        if (item == null) { editModel = null; return; }
+
+        editModel = new ItemEditDto
+        {
+            ItemName = item.ItemName,
+            Description = item.Description,
+            CategoryId = item.CategoryId,
+            RoomId = item.RoomId,
+            IsActive = item.IsActive
+        };
+    }
+
+    private async Task Save()
+    {
+        if (SelectedItemId == 0 || editModel == null) return;
+
+        if (string.IsNullOrWhiteSpace(editModel.ItemName) || editModel.CategoryId == 0 || editModel.RoomId == 0)
+        {
+            Message = "Vyplňte prosím povinná pole (item name, category, room).";
+            return;
+        }
+
+        var http = await CreateAuthorizedClient();
+        var resp = await http.PutAsJsonAsync($"api/items/{SelectedItemId}", editModel);
+
+        if (resp.IsSuccessStatusCode)
+        {
+            Message = "Položka byla úspěšně aktualizována.";
+            Nav.NavigateTo("/home");
+        }
+        else
+        {
+            var detail = await resp.Content.ReadAsStringAsync();
+            Message = $"Chyba při ukládání: {resp.StatusCode} — {detail}";
+        }
+    }
+
+    private void Cancel() => Nav.NavigateTo("/home");
+
+    private async Task<HttpClient> CreateAuthorizedClient()
+    {
+        var client = HttpFactory.CreateClient("ServerAPI");
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
+        if (!string.IsNullOrEmpty(token))
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        return client;
+    }
+
+    // ── DTOs ─────────────────────────────────────────────────────────────────
+
+    // Matches GET api/items response shape
+    private class ItemLookupDto
+    {
+        public int Id { get; set; }
+        public string ItemName { get; set; } = "";
+        public string? Description { get; set; }
+        public int CategoryId { get; set; }
+        public int RoomId { get; set; }
+        public bool IsActive { get; set; }
+    }
+
+    // Flat DTO sent to PUT api/items/{id} — matches ItemsController.ItemCreateDto
+    private class ItemEditDto
+    {
+        public string ItemName { get; set; } = "";
+        public string? Description { get; set; }
+        public int CategoryId { get; set; }
+        public int RoomId { get; set; }
+        public bool IsActive { get; set; }
+    }
+
+    private class CategoryLookupDto
+    {
+        public int Id { get; set; }
+        public string CategoryName { get; set; } = "";
+    }
+
+    private class RoomLookupDto
+    {
+        public int Id { get; set; }
+        public string RoomName { get; set; } = "";
     }
 }

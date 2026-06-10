@@ -1,19 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SchoolProperty.Web.Models
-{
+namespace SchoolPropertyEvidence.Models {
 
     [Table("items")]
-    public class ItemModel
-    {
+    public class ItemModel {
+
         [Key]
         [Column("id")]
         public int Id { get; set; }
-
-        [Required]
-        [Column("inventory_number")]
-        public string InventoryNumber { get; set; } = null!;
 
         [Required]
         [Column("item_name")]
@@ -27,6 +22,7 @@ namespace SchoolProperty.Web.Models
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
+        [InverseProperty(nameof(CategoryModel.Items))]
         public CategoryModel Category { get; set; } = null!;
 
         [Required]
@@ -34,6 +30,7 @@ namespace SchoolProperty.Web.Models
         public int RoomId { get; set; }
 
         [ForeignKey(nameof(RoomId))]
+        [InverseProperty(nameof(RoomModel.Items))]
         public RoomModel Room { get; set; } = null!;
 
         [Required]

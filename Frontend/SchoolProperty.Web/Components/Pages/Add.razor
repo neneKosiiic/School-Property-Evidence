@@ -1,4 +1,4 @@
-@page "/add"
+ï»¿@page "/add"
 @inject IHttpClientFactory HttpFactory
 @inject IJSRuntime JS
 @inject NavigationManager Nav
@@ -8,23 +8,19 @@
 
 <PageTitle>Add Record</PageTitle>
 
-<h1>Pøidat záznam</h1>
+<h1>PÅ™idat zÃ¡znam</h1>
 
 <div class="mb-3">
     <label class="form-label">Typ</label>
     <select class="form-select" @bind="AddType">
-        <option value="Item">Položka (Item)</option>
-        <option value="Room">Místnost (Room)</option>
+        <option value="Item">PoloÅ¾ka (Item)</option>
+        <option value="Room">MÃ­stnost (Room)</option>
     </select>
 </div>
 
 @if (AddType == "Item")
 {
     <EditForm Model="itemModel" OnValidSubmit="Save">
-        <div class="mb-3">
-            <label class="form-label">Inventory number</label>
-            <InputText class="form-control" @bind-Value="itemModel.InventoryNumber" />
-        </div>
         <div class="mb-3">
             <label class="form-label">Item name</label>
             <InputText class="form-control" @bind-Value="itemModel.ItemName" />
@@ -37,14 +33,20 @@
             <label class="form-label">Category</label>
             <select class="form-select" @bind="itemModel.CategoryId">
                 <option value="">-- vyber --</option>
-                @foreach (var c in categories) { <option value="@c.Id">@c.Name</option> }
+                @foreach (var c in categories)
+                {
+                    <option value="@c.Id">@c.CategoryName</option>
+                }
             </select>
         </div>
         <div class="mb-3">
             <label class="form-label">Room</label>
             <select class="form-select" @bind="itemModel.RoomId">
                 <option value="">-- vyber --</option>
-                @foreach (var r in rooms) { <option value="@r.Id">@r.Name</option> }
+                @foreach (var r in rooms)
+                {
+                    <option value="@r.Id">@r.RoomName</option>
+                }
             </select>
         </div>
         <div class="form-check mb-3">
@@ -66,7 +68,10 @@ else
             <label class="form-label">Responsible person</label>
             <select class="form-select" @bind="roomModel.ResponsiblePersonId">
                 <option value="">-- vyber --</option>
-                @foreach (var p in people) { <option value="@p.Id">@p.Name</option> }
+                @foreach (var p in people)
+                {
+                    <option value="@p.Id">@p.FirstName @p.LastName</option>
+                }
             </select>
         </div>
         <button class="btn btn-success me-2" type="submit">Save room</button>
@@ -82,10 +87,8 @@ else
 @code {
     private string AddType { get; set; } = "Item";
 
-    // Item create model (fields match backend ItemModel)
     private ItemCreateDto itemModel = new()
     {
-        InventoryNumber = "",
         ItemName = "",
         Description = "",
         CategoryId = null,
@@ -93,16 +96,16 @@ else
         IsActive = true
     };
 
-    // Room create model (fields match backend RoomModel)
     private RoomCreateDto roomModel = new()
     {
         RoomName = "",
         ResponsiblePersonId = null
     };
 
-    private List<LookupDto> categories = new();
-    private List<LookupDto> rooms = new();
-    private List<LookupDto> people = new();
+    // Each list uses a DTO that matches the actual API response shape
+    private List<CategoryLookupDto> categories = new();
+    private List<RoomLookupDto> rooms = new();
+    private List<PersonLookupDto> people = new();
 
     private string Message = "";
 
@@ -114,22 +117,25 @@ else
     private async Task LoadLookups()
     {
         var http = await CreateAuthorizedClient();
-        // pokud nìkterý endpoint neexistuje, vrátí prázdný seznam
+
         try
         {
-            categories = await http.GetFromJsonAsync<List<LookupDto>>("api/categories") ?? new();
+            // api/categories returns CategoryModel: { id, categoryName, description }
+            categories = await http.GetFromJsonAsync<List<CategoryLookupDto>>("api/categories") ?? new();
         }
         catch { categories = new(); }
 
         try
         {
-            rooms = await http.GetFromJsonAsync<List<LookupDto>>("api/rooms") ?? new();
+            // api/rooms returns RoomModel: { id, roomName, ... }
+            rooms = await http.GetFromJsonAsync<List<RoomLookupDto>>("api/rooms") ?? new();
         }
         catch { rooms = new(); }
 
         try
         {
-            people = await http.GetFromJsonAsync<List<LookupDto>>("api/people") ?? new();
+            // api/people returns PeopleModel: { id, firstName, lastName }
+            people = await http.GetFromJsonAsync<List<PersonLookupDto>>("api/people/teachers") ?? new();
         }
         catch { people = new(); }
     }
@@ -140,41 +146,44 @@ else
 
         if (AddType == "Item")
         {
-            // ensure required fields
-            if (string.IsNullOrWhiteSpace(itemModel.InventoryNumber) || string.IsNullOrWhiteSpace(itemModel.ItemName) || itemModel.CategoryId == null || itemModel.RoomId == null)
+            if (
+                string.IsNullOrWhiteSpace(itemModel.ItemName) ||
+                itemModel.CategoryId == null ||
+                itemModel.RoomId == null)
             {
-                Message = "Vyplòte prosím povinná pole pro položku (inventory number, item name, category, room).";
+                Message = "VyplÅˆte prosÃ­m povinnÃ¡ pole pro poloÅ¾ku (item name, category, room).";
                 return;
             }
 
             var resp = await http.PostAsJsonAsync("api/items", itemModel);
             if (resp.IsSuccessStatusCode)
             {
-                Message = "Položka byla úspìšnì pøidána.";
+                Message = "PoloÅ¾ka byla ÃºspÄ›Å¡nÄ› pÅ™idÃ¡na.";
                 Nav.NavigateTo("/home");
             }
             else
             {
-                Message = $"Chyba pøi vytváøení položky: {resp.StatusCode}";
+                var detail = await resp.Content.ReadAsStringAsync();
+                Message = $"Chyba pÅ™i vytvÃ¡Å™enÃ­ poloÅ¾ky: {resp.StatusCode} â€” {detail}";
             }
         }
-        else // Room
+        else
         {
             if (string.IsNullOrWhiteSpace(roomModel.RoomName) || roomModel.ResponsiblePersonId == null)
             {
-                Message = "Vyplòte prosím povinná pole pro místnost (room name, responsible person).";
+                Message = "VyplÅˆte prosÃ­m povinnÃ¡ pole pro mÃ­stnost (room name, responsible person).";
                 return;
             }
 
             var resp = await http.PostAsJsonAsync("api/rooms", roomModel);
             if (resp.IsSuccessStatusCode)
             {
-                Message = "Místnost byla úspìšnì pøidána.";
+                Message = "MÃ­stnost byla ÃºspÄ›Å¡nÄ› pÅ™idÃ¡na.";
                 Nav.NavigateTo("/home");
             }
             else
             {
-                Message = $"Chyba pøi vytváøení místnosti: {resp.StatusCode}";
+                Message = $"Chyba pÅ™i vytvÃ¡Å™enÃ­ mÃ­stnosti: {resp.StatusCode}";
             }
         }
     }
@@ -189,6 +198,8 @@ else
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         return client;
     }
+
+    // â”€â”€ DTOs matching actual API response shapes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private class ItemCreateDto
     {
@@ -206,9 +217,25 @@ else
         public int? ResponsiblePersonId { get; set; }
     }
 
-    private class LookupDto
+    // Matches CategoryModel: id + categoryName
+    private class CategoryLookupDto
     {
         public int Id { get; set; }
-        public string Name { get; set; } = "";
+        public string CategoryName { get; set; } = "";
+    }
+
+    // Matches RoomModel: id + roomName
+    private class RoomLookupDto
+    {
+        public int Id { get; set; }
+        public string RoomName { get; set; } = "";
+    }
+
+    // Matches PeopleModel: id + firstName + lastName
+    private class PersonLookupDto
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
     }
 }

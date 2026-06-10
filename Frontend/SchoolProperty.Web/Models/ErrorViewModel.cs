@@ -1,4 +1,4 @@
-namespace SchoolProperty.Web.Models
+namespace SchoolPropertyEvidence.Models
 {
     public class ErrorViewModel
     {
